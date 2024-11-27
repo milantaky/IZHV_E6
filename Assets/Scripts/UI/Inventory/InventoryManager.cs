@@ -134,7 +134,7 @@ public class InventoryManager : MonoBehaviour
         mItemDetailName = itemDetails.Q<Label>("ItemDetailName");
         mItemDetailDescription = itemDetails.Q<Label>("ItemDetailDescription");
         mItemDetailCost = itemDetails.Q<Label>("ItemDetailCost");
-        
+
         /*
          * Task 2c: Link the Button
          *
@@ -154,6 +154,8 @@ public class InventoryManager : MonoBehaviour
          * be called.
          */
         
+        mItemCreateButton = itemDetails.Q<Button>("ItemDetailButtonCreate");
+        mItemCreateButton.clicked += () => CreateItem();
         
         
         
@@ -389,9 +391,19 @@ public class InventoryManager : MonoBehaviour
         
         if (item == null)
         { // We have no item selected -> Provide some default information.
+            mItemDetailName.text = "No item selected";
+            mItemDetailDescription.text = "To craft an item, first select one please";
+            mItemDetailCost.text = "-";
+            
+            mItemCreateButton.SetEnabled(false);     
         }
         else
         { // We have item selected -> Use the item information.
+            mItemDetailName.text = item.definition.readableName;
+            mItemDetailDescription.text = item.definition.readableDescription;
+            mItemDetailCost.text = item.definition.cost.ToString();
+
+            mItemCreateButton.SetEnabled(availableCurrency >= item.definition.cost);    
         }
         
         selectedItem = item;
