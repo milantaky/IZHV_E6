@@ -436,9 +436,25 @@ public class InventoryManager : MonoBehaviour
          * it from the cost (itemDefinition.cost) from availableCurrency property.
          * These items are not cheap to make!
          */
+
+        if (selectedItem == null)
+        {
+            return false;
+        }
         
         var itemDefinition = selectedItem?.definition;
+
+        if (itemDefinition.cost <= availableCurrency)
+        {
+            Instantiate(itemDefinition.prefab, createDestination.transform);
+            availableCurrency -= itemDefinition.cost;
+            return true;
+        }
         
         return false;
+        
+        // var itemDefinition = selectedItem?.definition;
+        //
+        // return false;
     }
 }

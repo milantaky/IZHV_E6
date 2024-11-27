@@ -7,7 +7,6 @@
     <list default="true" id="daa5bea4-07d2-4ea2-ad1d-2a8191ee6556" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IZHV_E6/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IZHV_E6/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Inventory/InventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Inventory/InventoryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Inventory/InventoryStyle.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/Inventory/InventoryStyle.uss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1708967003196</updated>
       <workItem from="1708967005198" duration="575000" />
-      <workItem from="1732723048831" duration="2110000" />
+      <workItem from="1732723048831" duration="2788000" />
     </task>
     <servers />
   </component>
