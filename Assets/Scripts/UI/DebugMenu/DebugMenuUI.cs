@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary> Helper behavior which manages the debug UI. </summary>
 public class DebugMenuUI : MonoBehaviour
@@ -138,6 +139,21 @@ public class DebugMenuUI : MonoBehaviour
                     { InventoryManager.Instance.availableCurrency = currency; }
                  */
                 
+                GUILayout.BeginHorizontal();
+                {
+                    // Elements defined here will be place after each other
+                    GUILayout.Label("Currency: ", GUILayout.Width(WINDOW_DIMENSION.x / 4.0f));
+                    
+                    var currency = InventoryManager.Instance.availableCurrency;
+                    currency = (int) GUILayout.HorizontalSlider(currency, 0.0f, 1000.0f, 
+                        GUILayout.ExpandWidth(true));
+                    
+                    if (GUI.changed)
+                    { InventoryManager.Instance.availableCurrency = currency; }
+                    
+                }
+                GUILayout.EndHorizontal();
+                
                 
                 
                 
@@ -165,7 +181,44 @@ public class DebugMenuUI : MonoBehaviour
                  * be controlled from the Cheat Console.
                  */
                 
+                // if (GUI.Button (new Rect (25, 25, 100, 30), "Button")) 
+                // {
+                //     // This code is executed when the Button is clicked
+                // }
+
                 
+                // Interact
+                GUILayout.BeginHorizontal();
+                {
+                    bool toggle = true;
+                    
+                    GUILayout.Label("Interact: ", GUILayout.Width(WINDOW_DIMENSION.x / 4.0f));
+                    
+                    toggle = GUILayout.Toggle(toggle, "");
+                    
+                    if (GUI.changed)
+                    { GameManager.Instance.interactiveMode = toggle; }
+                }
+                GUILayout.EndHorizontal();
+                
+                // Volume
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Label("Volume: ", GUILayout.Width(WINDOW_DIMENSION.x / 4.0f));
+
+                    var volume = SoundManager.Instance.masterVolume;
+                    volume = (int) GUILayout.HorizontalSlider(volume, -80.0f, 20.0f, 
+                        GUILayout.ExpandWidth(true));
+                    
+                    if (GUI.changed)
+                    { SoundManager.Instance.masterVolume = volume; }
+                    
+                    if (GUILayout.Button("M", GUILayout.Width(WINDOW_DIMENSION.x/ 6.0f)))
+                    {
+                        SoundManager.Instance.masterMuted = !SoundManager.Instance.masterMuted;
+                    }
+                }
+                GUILayout.EndHorizontal();
                 
                 
                 
@@ -193,10 +246,12 @@ public class DebugMenuUI : MonoBehaviour
                      * it was pressed. So, all you need to do is place the character-enabling
                      * code into the if statement and voila!
                      */
-                    if (GUILayout.Button("Enable\nDummy\nCharacter", 
-                        GUILayout.ExpandWidth(true), 
-                        GUILayout.ExpandHeight(true)))
-                    { /* Fill the code here! */ }
+                    if (GUILayout.Button("Enable\nDummy\nCharacter",
+                            GUILayout.ExpandWidth(true),
+                            GUILayout.ExpandHeight(true)))
+                    {
+                        GameManager.Instance.TogglePlayerCharacter();
+                    }
                 }
                 GUILayout.EndHorizontal();
                 // Do not forget to end each group in the correct order!
